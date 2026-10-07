@@ -1,0 +1,533 @@
+<!doctype html>
+<html lang="vi">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>GKIET • Tra cứu phạt nguội</title>
+
+<style>
+*{
+  box-sizing:border-box
+}
+
+body{
+  margin:0;
+  font-family:Inter,system-ui,-apple-system,Segoe UI,Roboto,sans-serif;
+  background:#07111f;
+  color:#eef6ff;
+  min-height:100vh
+}
+
+.wrap{
+  max-width:1050px;
+  margin:auto;
+  padding:24px
+}
+
+.nav{
+  display:flex;
+  justify-content:space-between;
+  align-items:center;
+  padding:10px 0 34px
+}
+
+.brand{
+  font-weight:900;
+  letter-spacing:.08em;
+  font-size:22px
+}
+
+.brand span{
+  color:#45d6ff
+}
+
+.badge{
+  border:1px solid #28415c;
+  border-radius:999px;
+  padding:8px 13px;
+  color:#a9bdd1;
+  font-size:12px
+}
+
+.hero{
+  display:grid;
+  grid-template-columns:1.2fr .8fr;
+  gap:24px;
+  align-items:stretch
+}
+
+.card{
+  background:linear-gradient(145deg,#0d1b2e,#0a1525);
+  border:1px solid #1b334d;
+  border-radius:24px;
+  box-shadow:0 20px 70px #0005
+}
+
+.heroMain{
+  padding:42px
+}
+
+.eyebrow{
+  color:#45d6ff;
+  font-size:13px;
+  font-weight:800;
+  letter-spacing:.14em
+}
+
+.hero h1{
+  font-size:clamp(36px,6vw,64px);
+  line-height:.98;
+  margin:14px 0
+}
+
+.hero p{
+  color:#a8bbcf;
+  line-height:1.7
+}
+
+.form{
+  margin-top:28px
+}
+
+.input{
+  display:flex;
+  gap:10px;
+  background:#07111d;
+  border:1px solid #28415c;
+  border-radius:16px;
+  padding:8px
+}
+
+.input input{
+  flex:1;
+  background:none;
+  border:0;
+  outline:0;
+  color:white;
+  font-size:18px;
+  padding:13px 14px;
+  text-transform:uppercase
+}
+
+.btn{
+  border:0;
+  border-radius:12px;
+  background:#45d6ff;
+  color:#03101a;
+  font-weight:900;
+  padding:0 22px;
+  cursor:pointer
+}
+
+.btn:hover{
+  filter:brightness(1.08)
+}
+
+.hint{
+  font-size:12px;
+  color:#71879d;
+  margin-top:10px
+}
+
+.side{
+  padding:30px
+}
+
+.side h3{
+  margin-top:0
+}
+
+.stat{
+  padding:17px 0;
+  border-bottom:1px solid #193047
+}
+
+.stat b{
+  display:block;
+  font-size:26px
+}
+
+.stat span{
+  color:#8197aa;
+  font-size:13px
+}
+
+.result{
+  margin-top:24px;
+  padding:26px;
+  display:none
+}
+
+.result.show{
+  display:block
+}
+
+.ok{
+  color:#58e49a
+}
+
+.warn{
+  color:#ffcb66
+}
+
+.error{
+  color:#ff7272
+}
+
+.resultHead{
+  display:flex;
+  justify-content:space-between;
+  gap:12px;
+  align-items:center
+}
+
+.resultGrid{
+  display:grid;
+  grid-template-columns:repeat(3,1fr);
+  gap:12px;
+  margin-top:18px
+}
+
+.box{
+  background:#07111d;
+  border:1px solid #193047;
+  border-radius:14px;
+  padding:15px
+}
+
+.box small{
+  color:#71879d;
+  display:block;
+  margin-bottom:5px
+}
+
+.box strong{
+  font-size:16px
+}
+
+.notice{
+  margin-top:16px;
+  color:#93a8ba;
+  font-size:13px;
+  line-height:1.6
+}
+
+.footer{
+  text-align:center;
+  color:#60758a;
+  font-size:12px;
+  padding:28px
+}
+
+.loading{
+  opacity:.7;
+  pointer-events:none
+}
+
+@media(max-width:780px){
+
+  .hero{
+    grid-template-columns:1fr
+  }
+
+  .heroMain{
+    padding:28px
+  }
+
+  .resultGrid{
+    grid-template-columns:1fr
+  }
+
+  .input{
+    flex-direction:column
+  }
+
+  .btn{
+    height:52px
+  }
+
+  .side{
+    padding:24px
+  }
+
+}
+</style>
+</head>
+
+<body>
+
+<main class="wrap">
+
+<nav class="nav">
+
+<div class="brand">
+GKIET<span>/</span>CHECK
+</div>
+
+<div class="badge">
+PHẠT NGUỘI • DEMO
+</div>
+
+</nav>
+
+
+<section class="hero">
+
+
+<div class="card heroMain">
+
+<div class="eyebrow">
+GKIET TRAFFIC CHECK
+</div>
+
+<h1>
+Tra cứu<br>
+phạt nguội.
+</h1>
+
+<p>
+Nhập biển số xe để kiểm tra.
+Giao diện tối giản, nhanh và tối ưu cho điện thoại.
+</p>
+
+
+<div class="form">
+
+<div class="input">
+
+<input
+id="plate"
+maxlength="12"
+placeholder="VD: 66A12345"
+autocomplete="off"
+>
+
+<button
+class="btn"
+id="check"
+>
+TRA CỨU
+</button>
+
+</div>
+
+<div class="hint">
+Hỗ trợ biển số dạng 66A-123.45, 66A12345...
+</div>
+
+</div>
+
+</div>
+
+
+<aside class="card side">
+
+<h3>
+GKIET CHECK
+</h3>
+
+
+<div class="stat">
+
+<b>01</b>
+
+<span>
+Nhập biển số
+</span>
+
+</div>
+
+
+<div class="stat">
+
+<b>02</b>
+
+<span>
+Kiểm tra dữ liệu
+</span>
+
+</div>
+
+
+<div class="stat">
+
+<b>03</b>
+
+<span>
+Xem trạng thái
+</span>
+
+</div>
+
+
+<p class="notice">
+
+Bản GitHub Pages là website tĩnh.
+Muốn tra cứu dữ liệu CSGT thật cần kết nối API/backend được phép;
+không nên giả mạo kết quả.
+
+</p>
+
+</aside>
+
+</section>
+
+
+<section
+id="result"
+class="card result"
+>
+
+<div class="resultHead">
+
+<div>
+
+<div class="eyebrow">
+KẾT QUẢ
+</div>
+
+<h2 id="title">
+Đang kiểm tra...
+</h2>
+
+</div>
+
+<div id="status"></div>
+
+</div>
+
+
+<div id="content"></div>
+
+</section>
+
+
+<footer class="footer">
+
+© 2026 GKIET • Front-end GitHub Pages
+• Không đại diện cơ quan nhà nước
+
+</footer>
+
+</main>
+
+
+<script>
+
+const $ = s => document.querySelector(s);
+
+const plate = $('#plate');
+
+const result = $('#result');
+
+const btn = $('#check');
+
+
+function normalize(v){
+
+return v
+.toUpperCase()
+.replace(/[^0-9A-Z]/g,'');
+
+}
+
+
+function check(){
+
+const p = normalize(plate.value);
+
+
+if(p.length < 5){
+
+result.classList.add('show');
+
+$('#title').textContent =
+'Biển số chưa hợp lệ';
+
+$('#status').innerHTML =
+'<b class="error">● KIỂM TRA LẠI</b>';
+
+$('#content').innerHTML =
+
+'<p class="notice">' +
+'Vui lòng nhập biển số, ví dụ ' +
+'<b>66A-123.45</b>.' +
+'</p>';
+
+return;
+
+}
+
+
+btn.classList.add('loading');
+
+btn.textContent =
+'ĐANG KIỂM TRA...';
+
+result.classList.add('show');
+
+
+$('#title').textContent =
+'Đang kiểm tra ' + p;
+
+
+$('#status').innerHTML =
+'<b class="warn">● ĐANG XỬ LÝ</b>';
+
+
+$('#content').innerHTML =
+
+'<p class="notice">' +
+
+'Đây là bản demo giao diện. ' +
+
+'GitHub Pages không tự lấy dữ liệu ' +
+
+'phạt nguội chính thức. ' +
+
+'Hãy nối nút này với backend/API ' +
+
+'hợp pháp để trả kết quả thật.' +
+
+'</p>';
+
+
+setTimeout(()=>{
+
+btn.classList.remove('loading');
+
+btn.textContent =
+'TRA CỨU';
+
+},450);
+
+}
+
+
+btn.onclick = check;
+
+
+plate.addEventListener(
+'keydown',
+e => {
+
+if(e.key === 'Enter'){
+check();
+}
+
+});
+
+
+plate.addEventListener(
+'input',
+()=>{
+
+plate.value =
+plate.value.toUpperCase();
+
+});
+
+</script>
+
+</body>
+  </html>
